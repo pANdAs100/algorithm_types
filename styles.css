@@ -2,3 +2,13 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
 }
+
+#test-1, #test-2 {
+    background-color: rgb(211, 140, 240);
+    display: inline;
+}
+
+#algorithm-1, #algorithm-2 {
+    background-color: rgb(184, 252, 199);
+    display: inline;
+}

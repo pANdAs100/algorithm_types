@@ -13,20 +13,36 @@ document.getElementById("test-1").innerHTML += a+b;
 //problem: count to a desired value by choosing the least possible coins
 //purpose of greedy appreach is to force the algorithm to pick the largest possible coin
 
-var ar1 = [1,2,5,10];
-
-//first I had to make sure i remembered how to feed an array to a 
-//funtion in javascript
-function dummyFunc(total, num){
-    return total + num;
+//I will send my array to a dummy function which will just accumulate each element with reduce.
+//this is just a test for preparing my actual greedy function
+function dummyFunc(a,b,c,d){
+    //array allows us to traverse with reduce
+    var coins = [a,b,c,d]; 
+    console.log("here you can see the first test function traverse through the first set of coins:")
+    const sum = coins.reduce(function(result, i){
+        console.log("Coin value: " + i);
+        return result + i;
+    }, 0);
+    return sum;
 }
 
-//use reduce rather than use the spread operator to send the array to greedyFunc
+const ar1 = [1,2,5,10];
+
+//the result of our dummy function is then applied to the display
 document.getElementById("test-2").innerHTML
-+= ar1.reduce(dummyFunc);
++= dummyFunc(...ar1);
 
-function greedyFunc(total, num){
-    return total + Math.max(num);
+//GREEDY APROACH
+//Objective total: c18
+//attempt at cloning dummy function then modifying it's process to achieve creating our GREEDYFUNCTION
+function greedyFunc(a,b,c,d){
+    //array allows us to traverse with reduce
+    var coins = [a,b,c,d]; 
+    const sum = coins.reduce(function(result, i){
+        console.log("Coin value: " + i);
+        return result + i;
+    }, 0);
+    return sum;
 }
 
-document.getElementById("algorithm-1").innerHTML += ar1.reduce(greedyFunc);
+document.getElementById("algorithm-1").innerHTML += greedyFunc(...ar1);
