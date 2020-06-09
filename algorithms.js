@@ -36,13 +36,25 @@ document.getElementById("test-2").innerHTML
 //Objective total: c18
 //attempt at cloning dummy function then modifying it's process to achieve creating our GREEDYFUNCTION
 function greedyFunc(a,b,c,d){
-    //array allows us to traverse with reduce
-    var coins = [a,b,c,d]; 
-    const sum = coins.reduce(function(result, i){
-        console.log("Coin value: " + i);
-        return result + i;
-    }, 0);
-    return sum;
+    const targetSum = 18
+    var coins = [a,b,c,d];
+    var sum = Math.max(...coins);
+    var max;
+    console.log(sum);
+    while((sum += Math.max(...coins)) < targetSum){
+        if((sum += Math.max(...coins)) < targetSum){
+            console.log((sum += Math.max(...coins)) + " should be less than " + targetSum);
+            console.log(Math.max(...coins) + " is added to the current sum of: " + sum);
+            // sum += Math.max(...coins);//if the we dont go over the bounds we can add the largest coin
+        } else {
+           max = Math.max(...coins);
+           coins.filter((e) => {return e != max});
+           console.log(coins);
+            //so we must remove the largest value from our array of coins.
+            //otherwise we need a lighter coin that can be potentially reused even.
+        }
+    }
+    console.log(sum);
 }
 
 document.getElementById("algorithm-1").innerHTML += greedyFunc(...ar1);
