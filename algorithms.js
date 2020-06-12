@@ -34,20 +34,36 @@ document.getElementById("test-2").innerHTML
 
 //GREEDY APROACH
 //Objective total: c18
-//attempt at cloning dummy function then modifying it's process to achieve creating our GREEDYFUNCTION
+//Takes the highest value in the array and checks if it goes over the targeted sum
+//if it does not then this ammount is accumulated. If it does then that element is removed 
 function greedyFunc(a,b,c,d){
     console.log("--greedy function--");
-    const TARGETSUM = 18
+    var numberOfSteps = 0;
+    const TARGETSUM = 15
     var coins = [a,b,c,d];
-    var sum = Math.max(...coins);
-    var max = Math.max(...coins);
-    console.log((sum += Math.max(...coins)) < TARGETSUM);
-    while(coins){
-        coins.filter((e) => {return e != max});
-        console.log(coins);
-        max = Math.max(...coins);
+    var sum = Math.max(...coins);//sum is our accumulator
+    var max = Math.max(...coins); //just makes it so we dont have to keep writing Math.max(...coins)
+    // console.log((sum + Math.max(...coins)) < TARGETSUM);
+    while(coins.length > 0){
+        if((sum + max) <= TARGETSUM){
+            console.log("TRUE: (sum + max) <= TARGETSUM")
+            console.log("Therefor " + max + " is added to " + sum)
+            sum += max;
+            console.log("new sum is " + sum);
+            numberOfSteps++;
+        } else {
+            console.log("SUM + MAX IS GREATER THAN THE TARGET SUM");
+            console.log(max + " is removed from " + coins);
+            coins = coins.filter((e) => {return e != max});
+            max = Math.max(...coins);
+            numberOfSteps++;
+        }
     }
-    console.log("the sum is " + sum);
+    return numberOfSteps;
 }
 
+//by changing the TARGETSUM from 18 to 15 we can clearly see that the greedyFunction is not optimum for most use cases
+const ar2 = [1,1,7,10];
+
 document.getElementById("algorithm-1").innerHTML += greedyFunc(...ar1);
+document.getElementById("algorithm-1-2").innerHTML += greedyFunc(...ar2);
